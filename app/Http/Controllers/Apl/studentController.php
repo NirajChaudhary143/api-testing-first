@@ -35,4 +35,29 @@ class studentController extends Controller
         }
 
     }
+
+    public function search($id){
+        $student = TestApi::find($id);
+
+        if ($student) {
+            return response()->json([
+                'status'=>'find data',
+                'data'=>$student
+            ]);
+        }
+    }
+
+    public function delete($id){
+        $res= TestApi::find($id)->delete();
+        if ($res) {
+            return response()->json([
+                'status'=>'Deleted student data',
+            ]);
+        }
+        else {
+            return response()->json([
+                'status'=>'data not found'
+            ]);
+        }
+    }
 }
